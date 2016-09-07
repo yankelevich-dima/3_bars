@@ -1,3 +1,4 @@
+import sys
 import json
 
 
@@ -26,9 +27,11 @@ def get_closest_bar(data, longitude, latitude):
 
 
 if __name__ == '__main__':
-    data = load_data('bars.json')
-    print(get_biggest_bar(data))
-    print(get_smallest_bar(data))
+    data = load_data(sys.argv[1])
+    print('Biggest bar - {}'.format(get_biggest_bar(data)['Cells']['Name']))
+    print('Smallest bar - {}'.format(get_smallest_bar(data)['Cells']['Name']))
     lon = float(input('Enter longtitude: '))
     lat = float(input('Enter latitude: '))
-    print(get_closest_bar(data, lon, lat))
+    print('Closest bar - {}'.format(
+        get_closest_bar(data, lon, lat)['Cells']['Name'])
+    )
